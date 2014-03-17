@@ -4,10 +4,10 @@
 	<head>
 		<meta charset="utf-8">
 
-		<title>reveal.js - The HTML Presentation Framework</title>
+		<title>Ember &amp; SOA</title>
 
-		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
-		<meta name="author" content="Hakim El Hattab">
+		<meta name="description" content="Using Ember in SOA environments.">
+		<meta name="author" content="Jeremy Green">
 
 		<meta name="apple-mobile-web-app-capable" content="yes" />
 		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -42,20 +42,42 @@
 
         <section data-background="img/lan_su.jpg" data-state="intro">
           <h1>Ember & SOA</h1>
-          <div class="subtitle fragment">
+          <!--div class="subtitle fragment">
             <h3>Stumbling towards SOA</h3>
             <h3>The story of CloudHDR</h3>
+          </div-->
+        </section>
+
+        <section>
+          <h1>Ember & SOA</h1>
+          <h3>Stumbling towards SOA</h3>
+          <h3>The story of CloudHDR</h3>
+        </section>
+
+        <section>
+          <h1>CloudHDR</h1>
+          <h3>HDR Photo Processing Automation</h3>
+          <p>&nbsp;</p><p>&nbsp;</p>
+          <h3 class="fragment">HDR == High Dynamic Range</h3>
+        </section>
+
+        <section>
+          <h1>Why HDR?</h1>
+          <div class="fragment">
+            <h3>You don't want this:</h3>
+            <img src="img/over.jpg" alt="" width="48%"/>
+            <img src="img/under.jpg" alt="" width="48%"/>
           </div>
         </section>
 
-
-        <section>
-          Intro
+        <section data-background="img/memorial.jpg" data-state="title-slide">
+          <h1>You want this!</h1>
         </section>
+
+
 
         <section>
           <h1>Outline</h1>
-          <hr />
           <ol>
             <li>Goals &amp; Requirements</li>
             <li>First steps</li>
@@ -69,15 +91,26 @@
           </ol>
         </section>
 
-        <section>
-          Goals/Requirements
-          - Single sign on
-          - Single sign off
-          - Minimize code duplication
-          - Support a variety of app/service types
-          - Robot friendly
-
+        <section data-background="img/window.jpg" data-state="title-slide">
+          <h1>Goals &amp; Reqs</h1>
+          <aside class="notes">
+            My reqs might not be your reqs.<br/>
+            Understanding my reqs may help you understand my choices.<br/>
+            For different reqs you might make different choices.<br/>
+          </aside>
         </section>
+
+        <section>
+          <h1>Goals &amp; Reqs</h1>
+          <ul>
+            <li>Small focused apps</li>
+            <li>Single sign on/off</li>
+            <li>Minimize code duplication</li>
+            <li>Support a variety of app/service types</li>
+            <li>Friendly to people and robots</li>
+          </ul>
+        </section>
+
 
         <section>
           Getting started
@@ -93,28 +126,200 @@
           - Token Based
         </section>
 
-        <section>
-          Leaving Loalhost
-        </section>
 
-        <section>
-          Wrap up
-        </section>
 
-        <section data-markdown="intro.md"
-         data-separator="^\+\+\n"
-         data-vertical="^\+\+\+"
-         data-notes="^Note:"
-         data-charset="iso-8859-15">
-        </section>
+<section>
+  <h1>Leaving <code>localhost</code></h1>
+  <br />
+  <h3 class="fragment fade-in">Cross domain issues</h3>
+</section>
 
-				<section>
-					<h1>Reveal.js</h1>
-					<h3>HTML Presentations Made Easy</h3>
-					<p>
-						<small>Created by <a href="http://hakim.se">Hakim El Hattab</a> / <a href="http://twitter.com/hakimel">@hakimel</a></small>
-					</p>
-				</section>	
+<section>
+  <h2>Cancelled in the browser</h2>
+  <img src="img/cors_cancelled.png" alt="" class="no-border"/>
+</section>
+
+<section>
+  <h2><code>200 OK </code>on the server</h2>
+  <img src="img/cors_problem_terminal.png" alt="" class="no-border"/>
+</section>
+
+<section>
+  <h2>Check the console</h2>
+  <img src="img/cors_problem2.png" alt="" class="no-border"/>
+  <aside class="notes">
+    Luckily there is a tool that we can use to fix this problem.
+  </aside>
+</section>
+
+<section>
+  <img src="img/coors.png" alt="" class="no-border"/>
+</section>
+
+<section>
+  <img src="img/coors_nope.png" alt="" class="no-border" width="20%"/>
+  <br />
+  <h1>CORS</h1>
+  <br />
+  <h3>Cross Origin Resource Sharing</h3>
+
+</section>
+  
+
+
+<section>
+  <h3>Allows a site to tell browsers <br /><br />
+    that it is willing to <br /><br />
+    provide content/services to other sites</h3>
+</section>
+
+
+<section>
+  <pre><code>
+    # Gemfile
+    gem "rack-cors", :require => "rack/cors"
+  </code></pre>
+  <pre class="fragment fade-in"><code>
+    # config/application.rb
+    config.middleware.use Rack::Cors do
+      allow do
+        origins(/http:\/\/localhost:\d*/,
+                /https:\/\/cloudhdr-\w*-octolabs\.fwd\.wf/,
+                /http:\/\/[\w-]*\.cloudhdr\.com/
+               )
+        resource '/api/v1/*', 
+                  :headers => :any, 
+                  :methods => [:get, :post, :put, :delete, :options]
+      end
+    end
+  </code></pre>
+</section>
+
+<section>
+  <img src="img/cors_headers.png" alt="" class="no-border"/>
+</section>
+
+
+<section>
+  <h2>Public/Open API</h2>
+  <br />
+  <pre><code>
+    # config/application.rb
+    config.middleware.use Rack::Cors do
+      allow do
+        origins('*')
+        resource '/api/public/v1/*',
+          :headers => :any,
+          :methods => [:get]
+      end
+    end
+  </code></pre>
+</section>
+
+<section>
+  <h2>Do NOT Do This!</h2>
+  <br />
+  <pre><code>
+    # config/application.rb
+    config.middleware.use Rack::Cors do
+      allow do
+        origins('*')
+        resource '*',
+          :headers => :any,
+          :methods => [:get, :post, :put, :delete, :options]
+      end
+    end
+  </code></pre>
+  <br />
+  <h3>Learn about Cross Site Scripting!</h3>
+</section>
+
+<!--
+<section>
+  Slides about XSS?
+</section>
+-->
+
+<section>
+  <h2>The AJAX Cookie Problem</h2>
+  <img src="img/cookie.jpg" alt="" />
+</section>
+
+<section>
+  <img src="img/cookie_error.png" alt="" class="no-border"/>
+</section>
+
+<section>
+  <img src="img/json_view.png" alt="" class="no-border"/>
+</section>
+
+<section>
+  <h1>By default jQuery does not send cookies with AJAX requests</h1>
+</section>
+
+<section>
+  <h3><code>withCredentials</code> to the rescue!</h3>
+  <br />
+  <pre class="fragment fade-in"><code>
+  // send cookies with AJAX requests
+  $.ajaxPrefilter( function( options, originalOptions, jqXHR ) {
+    options.xhrFields = { withCredentials : true };
+  });
+  </code></pre>
+</section>
+
+<section>
+  <h2>Yay!</h2>
+  <img src="img/get_user.png" alt="" class="no-border"/>
+</section>
+
+<section>
+  <h2>Yay!</h2>
+  <img src="img/success.png" alt="" class="no-border"/>
+</section>
+
+<section data-background="img/window.jpg" data-state="title-slide">
+  <h1>Wrap Up</h1>
+</section>
+
+<section>
+  <h1>Wrap Up</h1>
+  <ul>
+    <li>Understand your requirements</li>
+    <li>Set up authentication</li>
+    <li>Get ready for deployment</li>
+    <li>Enjoy your SOA!</li>
+  </ul>
+</section>
+
+
+<section>
+    <h2>Thanks For Watching!</h2>
+    <div>
+        <br>
+    </div>
+    <div>Jeremy Green</div>
+    <div>
+      @jagthedrummer
+    </div>
+    <div>jeremy@octolabs.com</div>
+    <div>
+        <br>
+    </div>
+    <div>
+        <img src="img/octologo.png" class="no-border">
+        <br>
+    </div>
+    <div>
+        <br>
+    </div>
+    <div>
+        <a href="http://www.octolabs.com/">http://www.octolabs.com/</a>
+        <br>
+    </div>
+</section>
+
+
 
 			</div>
 
