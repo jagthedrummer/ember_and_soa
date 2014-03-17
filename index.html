@@ -50,8 +50,26 @@
 
         <section>
           <h1>Ember & SOA</h1>
-          <h3>Stumbling towards SOA</h3>
+          <p>&nbsp;</p>
+          <p>&nbsp;</p>
+          <h2>Stumbling towards SOA</h2>
           <h3>The story of CloudHDR</h3>
+        </section>
+
+        <section>
+          <h1>Outline</h1>
+          <ol>
+            <li>Some Context</li>
+            <li>Goals &amp; Requirements</li>
+            <li>First Steps</li>
+            <li>Authenticaion
+              <ol>
+                <li>Session Based</li>
+                <li>Token Based*</li>
+              </ol>
+            </li>
+            <li>Leaving <code>localhost</code></li>
+          </ol>
         </section>
 
         <section>
@@ -76,20 +94,7 @@
 
 
 
-        <section>
-          <h1>Outline</h1>
-          <ol>
-            <li>Goals &amp; Requirements</li>
-            <li>First steps</li>
-            <li>Authenticaion
-              <ol>
-                <li>Session Based</li>
-                <li>Token Based*</li>
-              </ol>
-            </li>
-            <li>Leaving <code>localhost</code></li>
-          </ol>
-        </section>
+        
 
         <section data-background="img/window.jpg" data-state="title-slide">
           <h1>Goals &amp; Reqs</h1>
@@ -111,6 +116,32 @@
           </ul>
         </section>
 
+        <section data-background="img/window.jpg" data-state="title-slide">
+          <h1>Getting Started</h1>
+          <aside class="notes">
+            - just started on localhost
+            - start an api on one port, and a 'client' on another
+          </aside>
+        </section>
+
+<section>
+<h1>Getting Started</h1>
+<p>&nbsp;</p>
+<pre><code>
+  $ export FILE_SERVICE=http://localhost:3007/
+
+</code></pre>
+<pre><code>
+  // Configure Ember Data
+  App.ApplicationAdapter = DS.RESTAdapter.extend({
+    host: '<%= ENV['FILE_SERVICE']%>',
+    namespace: 'api/v1'
+  });
+
+</code></pre>
+</section>
+
+
 
         <section>
           Getting started
@@ -126,6 +157,41 @@
           - Token Based
         </section>
 
+
+<section>
+<h2>Just get the current user</h2>
+<pre><code>
+  App = Ember.Application.create({
+    ready: function(){
+      var store = App.__container__.lookup('store:main');
+      var id = 'me?_=' + (new Date()).getTime();
+      store.find('user',id).then(function(user){
+        App.currentUser = user;
+      });
+    }
+  });
+
+</code></pre>
+</section>
+
+<section>
+<h2>Custom <code>401</code> error handler</h2>
+<pre><code>
+  App.ApplicationAdapter = DS.RESTAdapter.extend({
+    ajaxError: function(jqXHR) {
+      var error = this._super(jqXHR);
+      if (jqXHR && jqXHR.status === 401) {
+        var newLocation = "<%= CLOUDHDR['files'] %>/home/protected?return=";
+        newLocation += encodeURIComponent(document.location.toString());
+        document.location = newLocation;
+      } else {
+        return error;
+      }
+    }
+  });
+
+</code></pre>
+</section>
 
 
 <section>
