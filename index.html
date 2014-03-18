@@ -57,6 +57,14 @@
         </section>
 
         <section>
+          <img src="img/monolith.png" alt="" class="no-border"/>
+        </section>
+
+        <section>
+          <img src="img/cloudhdr.png" alt="CloudHDR Structure"  class="no-border"/>
+        </section>
+
+        <section>
           <h1>Outline</h1>
           <ol>
             <li>Some Context</li>
@@ -71,6 +79,46 @@
             <li>Leaving <code>localhost</code></li>
           </ol>
         </section>
+
+
+<section>
+  <table border="0" class="vert-middle" width="100%">
+    <tr>
+      <td colspan="2">
+        <h3>A bit about me</h3>
+        <hr />
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <br />
+        <h3>Jeremy Green</h3>
+        <h4>drummer, coder, entrepreneur, photographer, brewer</h4>
+        <h4 class="fragment fade-in">okc dev community enthusiast - okcruby.org, okcjs.org</h4>
+      </td>
+    </tr>
+    <tr class="fragment fade-in">
+      <td>
+        <img src="img/octologo.png" class="no-border">
+      </td>
+      <td>
+        @jagthedrummer <br />
+        jeremy@octolabs.com <br />
+        <a href="http://www.octolabs.com/">http://www.octolabs.com/</a>
+      </td>
+    </tr>
+  </table>
+  <aside class="notes">
+    These items are in chronological order.<br />
+    I've been drumming much more than half my life.<br />
+    Coding, just about half.<br />
+    * next fragment * <br />
+    Thanks to Jesse and Vance of okcjs for organizing Thunder Plains.
+    * next fragment * <br />
+    I'm historically bad at Twitter, but trying to get better.<br />
+    Contacting me through OctoLabs is more reliable.
+  </aside>
+</section>
 
         <section>
           <h1>CloudHDR</h1>
@@ -156,6 +204,40 @@
           - Session based
           - Token Based
         </section>
+
+
+<section data-background="img/window.jpg" data-state="title-slide">
+  <h1>Authentication</h1>
+</section>
+
+<section>
+  <h1>Authentication</h1>
+  <p>&nbsp;</p>
+  <img src="img/LoginWithFacebook.png" alt="" class="no-border"/>
+</section>
+
+
+<section>
+  <h1>OAuth(2)</h1>
+  <p>&nbsp;</p>
+  <h2>An open standard for delegated authorization</h2>
+</section>
+
+
+
+
+
+<section>
+  <h3>Protected Content in the Monolith</h3>
+  <div class="diagram">
+    browser->website: GET /protected
+    website->browser: REDIRECT /sign_in
+    Note over browser: Follow REDIRECT
+    browser->website: GET /sign_in
+    website->browser: 200 OK
+  </div>
+</section>
+
 
 
 <section>
@@ -394,6 +476,11 @@
 		<script src="lib/js/head.min.js"></script>
 		<script src="js/reveal.min.js"></script>
 
+    <script src="lib/js/jquery.min.js"></script>
+    <script src="lib/js/raphael-min.js"></script>
+    <script src="lib/js/underscore-min.js"></script>
+    <script src="lib/js/sequence-diagram-min.js"></script>
+
 		<script>
 
 			// Full list of configuration options available here:
@@ -424,6 +511,11 @@
 			});
 
 		</script>
+
+
+    <script>
+      $(".diagram").sequenceDiagram({theme: 'simple'});
+    </script>
 
 	</body>
 </html>
