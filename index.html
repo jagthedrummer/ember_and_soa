@@ -182,7 +182,7 @@
 <pre><code>
   // Configure Ember Data
   App.ApplicationAdapter = DS.RESTAdapter.extend({
-    host: '<%= ENV['FILE_SERVICE']%>',
+    host: '<%= ENV["FILE_SERVICE"]%>',
     namespace: 'api/v1'
   });
 
@@ -219,24 +219,117 @@
 
 <section>
   <h1>OAuth(2)</h1>
-  <p>&nbsp;</p>
-  <h2>An open standard for delegated authorization</h2>
+  <img src="img/OAuth2.png" alt="" class="no-border"/>
+  <h4>An open standard for delegated authorization</h4>
 </section>
 
+<section>
+  <h1>A Brief Intro</h1>
+  <h2>Or Review</h2>
+</section>
+
+<section>
+  <img src="img/rails_auth_flow_redirects_1_0.png" alt="" class="no-border stretch"/>
+</section>
+
+<section>
+  <img src="img/rails_auth_flow_redirects_1_1.png" alt="" class="no-border stretch"/>
+</section>
+
+<section>
+  <img src="img/rails_auth_flow_redirects_1_2.png" alt="" class="no-border stretch"/>
+</section>
+
+<section>
+  <img src="img/rails_auth_flow_redirects_1_3.png" alt="" class="no-border stretch"/>
+</section>
+
+<section>
+  <img src="img/rails_auth_flow_redirects_1_4.png" alt="" class="no-border stretch"/>
+</section>
+
+
+<section>
+  <img src="img/rails_auth_flow_redirects_2_0.png" alt="" class="no-border stretch"/>
+</section>
+
+<section>
+  <img src="img/rails_auth_flow_redirects_2_1.png" alt="" class="no-border stretch"/>
+</section>
+
+<section>
+  <img src="img/rails_auth_flow_redirects_2_2.png" alt="" class="no-border stretch"/>
+</section>
+
+<section>
+  <img src="img/rails_auth_flow_redirects_2_3.png" alt="" class="no-border stretch"/>
+</section>
+
+<section>
+  <h1>Ember + OAuth</h1>
+  <p>&nbsp;</p>
+  <h2>Session Based Auth</h2>
+</section>
+
+<section>
+  <img src="img/ember_auth_flow_redirects_1_0.png" alt="" class="no-border stretch"/>
+</section>
+
+<section>
+  <img src="img/ember_auth_flow_redirects_1_1.png" alt="" class="no-border stretch"/>
+</section>
+
+<section>
+  <img src="img/ember_auth_flow_redirects_1_2.png" alt="" class="no-border stretch"/>
+</section>
+
+<section>
+  <img src="img/ember_auth_flow_redirects_1_3.png" alt="" class="no-border stretch"/>
+</section>
+
+<section>
+  <img src="img/ember_auth_flow_redirects_1_4.png" alt="" class="no-border stretch"/>
+</section>
+
+<section>
+  <img src="img/ember_auth_flow_redirects_1_5.png" alt="" class="no-border stretch"/>
+</section>
+
+<section>
+  <img src="img/ember_auth_flow_redirects_1_6.png" alt="" class="no-border stretch"/>
+</section>
+
+<section>
+  <img src="img/ember_auth_flow_redirects_1_7.png" alt="" class="no-border stretch"/>
+</section>
 
 
 
 
 <section>
-  <h3>Protected Content in the Monolith</h3>
-  <div class="diagram">
-    browser->website: GET /protected
-    website->browser: REDIRECT /sign_in
-    Note over browser: Follow REDIRECT
-    browser->website: GET /sign_in
-    website->browser: 200 OK
-  </div>
+  <img src="img/ember_auth_flow_redirects_2_0.png" alt="" class="no-border stretch"/>
 </section>
+
+<section>
+  <img src="img/ember_auth_flow_redirects_2_1.png" alt="" class="no-border stretch"/>
+</section>
+
+<section>
+  <img src="img/ember_auth_flow_redirects_2_2.png" alt="" class="no-border stretch"/>
+</section>
+
+<section>
+  <img src="img/ember_auth_flow_redirects_2_3.png" alt="" class="no-border stretch"/>
+</section>
+
+<section>
+  <img src="img/ember_auth_flow_redirects_2_4.png" alt="" class="no-border stretch"/>
+</section>
+
+<section>
+  <img src="img/ember_auth_flow_redirects_2_5.png" alt="" class="no-border stretch"/>
+</section>
+
 
 
 
@@ -256,6 +349,7 @@
 </code></pre>
 </section>
 
+
 <section>
 <h2>Custom <code>401</code> error handler</h2>
 <pre><code>
@@ -263,7 +357,7 @@
     ajaxError: function(jqXHR) {
       var error = this._super(jqXHR);
       if (jqXHR && jqXHR.status === 401) {
-        var newLocation = "<%= CLOUDHDR['files'] %>/home/protected?return=";
+        var newLocation = "http://files.cloudhdr.com/auth?return=";
         newLocation += encodeURIComponent(document.location.toString());
         document.location = newLocation;
       } else {
@@ -276,10 +370,33 @@
 </section>
 
 
+
+<section>
+  <h2>Token Based Auth</h2>
+</section>
+
+
+<section>
+  <img src="img/ember_token_flow_1.png" alt="" class="no-border stretch"/>
+</section>
+
+<section>
+  <img src="img/ember_token_flow_2.png" alt="" class="no-border stretch"/>
+</section>
+
+<section>
+  <img src="img/ember_token_flow_3.png" alt="" class="no-border stretch"/>
+</section>
+
+
+<section data-background="img/window.jpg" data-state="title-slide">
+  <h1>Leaving <code>localhost</code></h1>
+</section>
+
 <section>
   <h1>Leaving <code>localhost</code></h1>
   <br />
-  <h3 class="fragment fade-in">Cross domain issues</h3>
+  <h3>Cross domain issues</h3>
 </section>
 
 <section>
