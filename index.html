@@ -40,7 +40,7 @@
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
 
-        <section data-background="img/lan_su.jpg" data-state="intro">
+        <section data-background="img/lan_su_tomster.jpg" data-state="intro">
           <h1>Ember & SOA</h1>
           <!--div class="subtitle fragment">
             <h3>Stumbling towards SOA</h3>
@@ -66,15 +66,10 @@
 
         <section>
           <h1>Outline</h1>
-          <ol>
-            <li>Some Context</li>
-            <li>Goals &amp; Requirements</li>
+          <ol start="0">
+            <li class="fragment fade-in">Context, Goals &amp; Requirements</li>
             <li>First Steps</li>
             <li>Authenticaion
-              <ol>
-                <li>Session Based</li>
-                <li>Token Based*</li>
-              </ol>
             </li>
             <li>Leaving <code>localhost</code></li>
           </ol>
@@ -136,7 +131,7 @@
           </div>
         </section>
 
-        <section data-background="img/memorial.jpg" data-state="title-slide">
+        <section data-background="img/memorial_tomster.jpg" data-state="title-slide">
           <h1>You want this!</h1>
         </section>
 
@@ -144,7 +139,7 @@
 
         
 
-        <section data-background="img/window.jpg" data-state="title-slide">
+        <section data-background="img/window_tomster.jpg" data-state="title-slide">
           <h1>Goals &amp; Reqs</h1>
           <aside class="notes">
             My reqs might not be your reqs.<br/>
@@ -157,14 +152,14 @@
           <h1>Goals &amp; Reqs</h1>
           <ul>
             <li>Small focused apps</li>
-            <li>Single sign on/off</li>
-            <li>Minimize code duplication</li>
-            <li>Support a variety of app/service types</li>
-            <li>Friendly to people and robots</li>
+            <li class="fragment fade-in">Single sign on/off</li>
+            <li class="fragment fade-in">Minimize code duplication</li>
+            <li class="fragment fade-in">Support a variety of app/service types</li>
+            <li class="fragment fade-in">Friendly to people and robots</li>
           </ul>
         </section>
 
-        <section data-background="img/window.jpg" data-state="title-slide">
+        <section data-background="img/park_tomster.jpg" data-state="title-slide">
           <h1>Getting Started</h1>
           <aside class="notes">
             - just started on localhost
@@ -175,10 +170,37 @@
 <section>
 <h1>Getting Started</h1>
 <p>&nbsp;</p>
+<p>Start a local service</p>
+<pre><code>
+  $ rails -p 3007
+
+</code></pre>
+
+<p>&nbsp;</p>
+
+<p>Configure Ember Data</p>
+<pre><code>
+  // Configure Ember Data
+  App.ApplicationAdapter = DS.RESTAdapter.extend({
+    host: 'http://localhost:3007'
+  });
+
+</code></pre>
+
+</section>
+
+
+<section>
+
+<h2>Better than hard coding</h2>
+<p>&nbsp;</p>
+
 <pre><code>
   $ export FILE_SERVICE=http://localhost:3007/
 
 </code></pre>
+<p>&nbsp;</p>
+
 <pre><code>
   // Configure Ember Data
   App.ApplicationAdapter = DS.RESTAdapter.extend({
@@ -191,22 +213,27 @@
 
 
 
-        <section>
-          Getting started
-          - developing on localhost
-          - just start a service, and start a 'client' on a separate port
-          - EmberData config
-        </section>
+        
 
-        <section>
-          Authentication
-          - Goals/Requirements
-          - Session based
-          - Token Based
-        </section>
+<section>
+  <h2>Proceed as normal</h2>
+  <ul>
+    <li>Routes</li>
+    <li>Controllers</li>
+    <li>Models</li>
+    <li>Components</li>
+    <li>Etc...</li>
+  </ul>
+</section>
+
+<section>
+  <h1>Congratulations!</h1>
+  <p>&nbsp;</p>
+  <h2>You're "doing SOA"!</h2>
+</section>
 
 
-<section data-background="img/window.jpg" data-state="title-slide">
+<section data-background="img/ghost_ship_tomster.jpg" data-state="title-slide">
   <h1>Authentication</h1>
 </section>
 
@@ -381,7 +408,10 @@
 <section>
   <h2>Token Based Auth*</h2>
   <p>&nbsp;</p>
-  <h2 class="fragment fade-in">*I have not actually implemented this yet</h2>
+  <div class="fragment fade-in">
+    <h2 class="">*I have not actually implemented this yet</h2>
+    <img src="img/canary_tomster.png" alt="" class="no-border"/>
+  </div>
 </section>
 
 
@@ -449,12 +479,12 @@
 
 
 
-<section data-background="img/window.jpg" data-state="title-slide">
-  <h1>Leaving <code>localhost</code></h1>
+<section data-background="img/elephant_tomster.jpg" data-state="title-slide">
+  <h1 class="smaller">Leaving <code>localhost</code></h1>
 </section>
 
 <section>
-  <h1>Leaving <code>localhost</code></h1>
+  <h1 class="smaller">Leaving <code>localhost</code></h1>
   <br />
   <h3>Cross domain issues</h3>
 </section>
@@ -603,7 +633,7 @@
   <img src="img/success.png" alt="" class="no-border"/>
 </section>
 
-<section data-background="img/window.jpg" data-state="title-slide">
+<section data-background="img/water_tomster.jpg" data-state="title-slide">
   <h1>Wrap Up</h1>
 </section>
 
@@ -618,30 +648,23 @@
 </section>
 
 
-<section>
-    <h2>Thanks For Watching!</h2>
-    <div>
-        <br>
-    </div>
-    <div>Jeremy Green</div>
-    <div>
-      @jagthedrummer
-    </div>
-    <div>jeremy@octolabs.com</div>
-    <div>
-        <br>
-    </div>
-    <div>
+<section data-background="img/bridge_tomster.jpg" data-state="title-slide last-slide">
+    <h1 class="smaller-yet">Thanks For Watching!</h1>
+
+   <table border="0" class="vert-middle">
+    <tr>
+      <td>
+        <p>@jagthedrummer</p>
+        <p>jeremy@octolabs.com</p>
+        <p><a href="http://www.octolabs.com/">http://www.octolabs.com/</a></p>
+      </td>
+      <td>
         <img src="img/octologo.png" class="no-border">
-        <br>
-    </div>
-    <div>
-        <br>
-    </div>
-    <div>
-        <a href="http://www.octolabs.com/">http://www.octolabs.com/</a>
-        <br>
-    </div>
+      </td>
+    </tr>
+  </table>
+
+    
 </section>
 
 
