@@ -18,7 +18,7 @@
 		<link rel="stylesheet" href="css/theme/sky.css" id="theme">
 
 		<!-- For syntax highlighting -->
-		<link rel="stylesheet" href="lib/css/zenburn.css">
+		<link rel="stylesheet" href="css/hemisu-dark.css">
 
     <!-- Custom stuff -->
 		<link rel="stylesheet" href="css/custom.css">
@@ -89,10 +89,12 @@
         <br />
         <h3>Jeremy Green</h3>
         <h4>drummer, coder, entrepreneur, photographer, brewer</h4>
-        <h4 class="fragment fade-in">okc dev community enthusiast - okcruby.org, okcjs.org</h4>
+        <!--h4 class="fragment fade-in">okc dev community enthusiast - okcruby.org, okcjs.org</h4-->
+        <h4>organizer of OkcRuby.org</h4>
+
       </td>
     </tr>
-    <tr class="fragment fade-in">
+    <tr class="">
       <td>
         <img src="img/octologo.png" class="no-border">
       </td>
@@ -233,7 +235,7 @@
 </section>
 
 
-<section data-background="img/ghost_ship_tomster.jpg" data-state="title-slide">
+<section data-background="img/ghost_ship_tomster.jpg" data-state="title-slide" data-transition="zoom">
   <h1>Authentication</h1>
 </section>
 
@@ -690,15 +692,28 @@
 			// Full list of configuration options available here:
 			// https://github.com/hakimel/reveal.js#configuration
 			Reveal.initialize({
-				controls: true,
-				progress: true,
+				controls: false,
+				progress: false,
 				history: true,
 				center: false,
 
 				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
 				transition: Reveal.getQueryHash().transition || 'none', // default/cube/page/concave/zoom/linear/fade/none
         
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 960,
+        height: 700,
 
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        // Bounds for smallest/largest possible scale to apply to content
+        minScale: 0.2,
+        maxScale: 1.0,
+
+          
 				// Parallax scrolling
 				// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
 				// parallaxBackgroundSize: '2100px 900px',
